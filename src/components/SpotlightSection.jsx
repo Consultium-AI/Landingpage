@@ -50,7 +50,7 @@ export default function SpotlightSection() {
           transition={{ delay: 0.3, duration: 0.8 }}
         >
           <img
-            src="/images/recording-ui.png"
+            src={`${import.meta.env.BASE_URL}images/recording-ui.png`}
             alt="Live opname interface"
             className="w-full h-auto object-cover"
           />

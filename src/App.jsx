@@ -116,7 +116,7 @@ export default function App() {
             viewport={{ once: true }}
           >
             <video
-              src={`${BASE}videos/soep-demo.mp4`}
+              src={`${import.meta.env.BASE_URL}videos/soep-demo.mp4`}
               controls
               autoPlay
               muted

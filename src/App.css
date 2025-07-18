@@ -1,0 +1,152 @@
+:root {
+  --accent: #3A29FF;
+  --text-light: #F5F5F5;
+}
+
+/* ---------------------------------------- */
+/*   ALGEMENE RESET + BODY                 */
+/* ---------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  color: #1E293B;
+  background: transparent;
+  min-height: 100vh;
+}
+
+/* ---------------------------------------- */
+/*   NAVBAR                                */
+/* ---------------------------------------- */
+/* Let op: de transparantie/blur zit in Navbar.jsx */
+
+/* ---------------------------------------- */
+/*   HERO SECTION                          */
+/* ---------------------------------------- */
+#hero {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 6rem;      /* ruimte voor de navbar */
+  padding-bottom: 6rem;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#hero .relative {
+  position: relative;
+  z-index: 1;
+  max-width: 48rem;
+  width: 100%;
+}
+
+/* Titel */
+#hero h1 {
+  font-size: 2.5rem;      /* md:4rem via Tailwind */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+@media (min-width: 768px) {
+  #hero h1 {
+    font-size: 3.75rem;  /* md:text-6xl */
+  }
+}
+
+/* Subtitle */
+#hero p {
+  font-size: 1.125rem;    /* md:text-xl */
+  margin-bottom: 2rem;
+  color: white;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Button */
+#hero button {
+  background: white;
+  color: #1D4ED8;          /* blauw-600 */
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  box-shadow: 0 10px 20px rgba( 29,78,216, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#hero button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 25px rgba(29,78,216,0.5);
+}
+
+/* ---------------------------------------- */
+/*   KLEURCLASSES VOOR TEKST               */
+/* ---------------------------------------- */
+.text-blue-400 {
+  color: #60A5FA;
+}
+.text-blue-300 {
+  color: #93C5FD;
+}
+@keyframes shine {
+  0%   { transform: translateX(-100%) skewX(-20deg); }
+  50%  { transform: translateX(100%) skewX(-20deg); }
+  100% { transform: translateX(200%) skewX(-20deg); }
+}
+
+/* CountUp tekst mag gradient krijgen */
+.text-gradient {
+  background: linear-gradient(90deg, #6366f1, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Shine-keyframes voor badge animatie */
+@keyframes shine {
+  0% { transform: translateX(-100%) skewX(-20deg); }
+  100% { transform: translateX(200%) skewX(-20deg); }
+}
+/* ---------------------------------------- */
+/*   GLARE HOVER EFFECT VOOR KAARTEN       */
+/* ---------------------------------------- */
+.glare-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glare-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+/* De glans-laag */
+.glare-card::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(255,255,255,0.4) 0%,
+    rgba(255,255,255,0) 60%
+  );
+  transform: rotate(45deg);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+.glare-card:hover::after {
+  /* beweeg de glans diagonaal over de kaart */
+  transform: rotate(45deg) translate(50%, 50%);
+}

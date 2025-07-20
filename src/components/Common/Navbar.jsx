@@ -1,58 +1,62 @@
 // src/components/Common/Navbar.jsx
 import { motion } from "framer-motion"
 
-export default function Navbar({ transparent }) {
+export default function Navbar() {
   return (
-    <nav
-      className={`
-        fixed top-0 left-0 w-full z-50 backdrop-blur-md h-24
-        ${transparent
-          ? "bg-white/20"       /* lichte witte tint met 20% opacity */
-          : "bg-white/80"}      /* fallback, mocht je het transparant uitzetten */
-        rounded-b-[3rem]          /* pill-vorm aan de onderkant */
-        transition-colors
-      `}
-    >
-      <div className="max-w-6xl mx-auto flex items-center justify-between h-full px-6">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100" 
+         style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
+      <div className="max-w-8xl mx-auto flex items-center justify-between h-16 px-8">
         {/* Logo */}
-        <a href="#hero" className="flex items-center h-full">
+        <a href="#hero" className="flex items-center -my-8 ml-12">
           <img
             src={`${import.meta.env.BASE_URL}images/logo.png`}
-            alt="Consultium AI Logo"
-            className="w-24 h-24 md:w-32 md:h-32 object-contain"
+            alt="Consultium AI"
+            className="h-32 w-auto -my-8"
           />
         </a>
 
-        {/* Desktop menu */}
-        <div className="hidden md:flex space-x-8">
-          {["Features", "Pricing", "Roadmap", "Contact"].map(item => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-white hover:text-indigo-200 transition"
-            >
-              {item}
-            </a>
-          ))}
-        </div>
+        {/* Center Navigation - Desktop */}
+        <nav className="hidden lg:flex items-center space-x-8">
+          <a 
+            href="#features" 
+            className="text-gray-800 font-medium hover:text-gray-900 transition-colors"
+          >
+            Features
+          </a>
+          <a 
+            href="#about" 
+            className="text-gray-800 font-medium hover:text-gray-900 transition-colors"
+          >
+            Over Ons
+          </a>
+          <a 
+            href="#contact" 
+            className="text-gray-800 font-medium hover:text-gray-900 transition-colors"
+          >
+            Contact
+          </a>
+        </nav>
 
-        {/* CTA */}
-        <div className="hidden md:block">
+        {/* Right Side - Login and CTA */}
+        <div className="hidden lg:flex items-center space-x-6 mr-12">
+
           <motion.a
             href="https://app.consultium.ai"
-            className="inline-flex items-center h-12 px-6 bg-indigo-500 text-white font-semibold rounded-full hover:bg-indigo-600 transition"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
+            className="px-10 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium rounded-lg hover:shadow-lg transition-all duration-200"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
           >
-            Maak account aan
+            Neem Contact Op
           </motion.a>
         </div>
 
-        {/* Mobile burger */}
-        <button className="md:hidden p-2">
-          <span className="block w-6 h-0.5 bg-white mb-1" />
-          <span className="block w-6 h-0.5 bg-white mb-1" />
-          <span className="block w-6 h-0.5 bg-white" />
+        {/* Mobile Menu Button */}
+        <button className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+          <div className="space-y-1.5">
+            <span className="block w-5 h-0.5 bg-gray-700"></span>
+            <span className="block w-5 h-0.5 bg-gray-700"></span>
+            <span className="block w-5 h-0.5 bg-gray-700"></span>
+          </div>
         </button>
       </div>
     </nav>

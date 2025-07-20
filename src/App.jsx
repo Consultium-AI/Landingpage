@@ -68,8 +68,8 @@ export default function App() {
           className="relative pt-32 pb-20"
           style={{ minHeight: "120vh" }}
         >
-          {/* Left Content - Absolutely positioned left */}
-          <div className="absolute left-20 top-32 w-1/3 z-20">
+          {/* Left Content - Desktop: Absolutely positioned left, Mobile: Normal flow */}
+          <div className="absolute left-20 top-32 w-1/3 z-20 lg:block hidden">
             {/* Small tagline */}
             <motion.div
               className="text-left px-5 mb-6"
@@ -168,9 +168,116 @@ export default function App() {
             </motion.div>
           </div>
 
-          {/* Right Image - Absolutely positioned right, large */}
+          {/* Mobile Content - Only visible on mobile */}
+          <div className="lg:hidden px-6 pt-8 pb-16">
+            <motion.div
+              className="text-center mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="text-sm font-medium text-gray-800 tracking-wider uppercase">
+                REVOLUTIONEER MEDISCHE DOCUMENTATIE
+              </span>
+            </motion.div>
+
+            <motion.h1
+              className="text-4xl font-bold mb-6 leading-tight text-center"
+              style={{ textShadow: '2px 2px 4px rgba(255, 255, 255, 0.8)' }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <span className="text-gray-900">Jouw consult,</span>
+              <br />
+              <span className="text-gray-900">nu </span>
+              <span 
+                style={{ 
+                  color: '#056fe8'
+                }}
+              >
+                automated
+              </span>
+              <br />
+              <span className="text-gray-900">met AI</span>
+            </motion.h1>
+
+            <motion.p
+              className="text-lg text-gray-700 mb-8 leading-relaxed text-center px-4"
+              style={{ textShadow: '1px 1px 2px rgba(255, 255, 255, 0.6)' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
+              <span className="text-gray-900">Consultium AI transcribeert automatisch je gesprekken en genereert 
+              professionele SOEP-verslagen binnen seconden, zodat je je volledig 
+              kunt focussen op je patiënt.</span>
+            </motion.p>
+
+            <motion.div
+              className="flex flex-col gap-4 mb-8 px-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              <motion.button
+                className="px-8 py-4 font-semibold rounded-lg text-white text-lg transition-all duration-200"
+                style={{ background: 'linear-gradient(135deg, #056FE8 0%, #0580EB 100%)' }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="text-white font-bold">Bekijk Demo</span>
+              </motion.button>
+              
+              <motion.button
+                className="w-full px-8 py-4 bg-transparent border-2 border-gray-300 text-gray-800 font-semibold rounded-lg transition-all duration-200 text-lg"
+                whileTap={{ scale: 0.98 }}
+              >
+                Contact Ons
+              </motion.button>
+            </motion.div>
+
+            <motion.div
+              className="space-y-3 px-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+            >
+              <div className="flex items-center gap-4 bg-white/60 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/40 shadow-lg">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span className="text-gray-800 font-semibold">Real-time transcriptie tijdens het consult</span>
+              </div>
+              <div className="flex items-center gap-4 bg-white/60 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/40 shadow-lg">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span className="text-gray-800 font-semibold">Automatische SOEP-structuur generatie</span>
+              </div>
+            </motion.div>
+
+            {/* Mobile Image */}
+            <motion.div
+              className="mt-12 px-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.8 }}
+            >
+              <img
+                src={`${import.meta.env.BASE_URL}images/Screenshot 2025-07-19 144158.png`}
+                alt="Consultium AI Interface"
+                className="w-full h-auto rounded-2xl shadow-2xl"
+              />
+            </motion.div>
+          </div>
+
+          {/* Right Image - Desktop Only */}
           <motion.div
-            className="absolute right-0 bottom-100 px-8 z-10"
+            className="absolute right-0 bottom-100 px-8 z-10 hidden lg:block"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
@@ -182,8 +289,6 @@ export default function App() {
                 alt="Consultium AI Interface"
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />
-              
-
             </div>
           </motion.div>
 
@@ -224,17 +329,17 @@ export default function App() {
             >
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <motion.div
-                  className="relative bg-gradient-to-br from-white to-gray-50 border border-gray-100 rounded-3xl p-10 shadow-xl"
+                  className="relative bg-gradient-to-br from-white to-gray-50 border border-gray-100 rounded-3xl p-6 lg:p-10 shadow-xl"
             variants={reveal}
                 >
                   {/* Subtle accent background */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full blur-2xl opacity-30"></div>
                   
                   <div className="relative z-10">
-                    <h2 className="text-4xl font-bold mb-6 text-gray-900">
+                    <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
                       SOEP <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Verslag</span> in seconden
             </h2>
-                    <p className="text-gray-700 mb-8 text-lg">Bespaar kostbare tijd en energie:</p>
+                    <p className="text-gray-700 mb-8 text-base lg:text-lg">Bespaar kostbare tijd en energie:</p>
                     <ul className="space-y-4 mb-8">
                       {[
                         "Volledig gestructureerd volgens NHG: Subjectief, Objectief, Evaluatie, Plan",
@@ -245,7 +350,7 @@ export default function App() {
                       ].map((item, index) => (
                         <motion.li
                           key={index}
-                          className="flex items-start gap-3 text-gray-600"
+                          className="flex items-start gap-3 text-gray-600 text-sm lg:text-base"
                           variants={reveal}
                           transition={{ delay: index * 0.1 }}
                         >
@@ -260,7 +365,7 @@ export default function App() {
             </ul>
             <motion.a
               href="#soep"
-                      className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
+                      className="inline-block px-6 lg:px-8 py-3 lg:py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.98 }}
             >
@@ -270,7 +375,7 @@ export default function App() {
           </motion.div>
 
           <motion.div
-                  className="relative rounded-3xl overflow-hidden shadow-2xl"
+                  className="relative rounded-3xl overflow-hidden shadow-2xl order-first lg:order-none"
             variants={reveal}
             transition={{ delay: 0.2 }}
           >
@@ -307,7 +412,7 @@ export default function App() {
           </motion.div>
 
           <motion.div
-                  className="relative bg-gradient-to-br from-white to-gray-50 border border-gray-100 rounded-3xl p-10 shadow-xl lg:order-2"
+                  className="relative bg-gradient-to-br from-white to-gray-50 border border-gray-100 rounded-3xl p-6 lg:p-10 shadow-xl lg:order-2"
             variants={reveal}
             transition={{ delay: 0.2 }}
                 >
@@ -315,10 +420,10 @@ export default function App() {
                   <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-full blur-2xl opacity-30"></div>
                   
                   <div className="relative z-10">
-                    <h2 className="text-4xl font-bold mb-6 text-gray-900">
+                    <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
                       Live Opname in <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">real-time</span>
                     </h2>
-                    <p className="text-gray-700 mb-8 text-lg">Focus volledig op je patiënt, niet op notities:</p>
+                    <p className="text-gray-700 mb-8 text-base lg:text-lg">Focus volledig op je patiënt, niet op notities:</p>
                     <ul className="space-y-4">
                       {[
                         "Ultrasnelle transcriptie met minder dan 1 seconde vertraging",
@@ -329,7 +434,7 @@ export default function App() {
                       ].map((item, index) => (
                         <motion.li
                           key={index}
-                          className="flex items-start gap-3 text-gray-600"
+                          className="flex items-start gap-3 text-gray-600 text-sm lg:text-base"
                           variants={reveal}
                           transition={{ delay: index * 0.1 }}
                         >
@@ -357,17 +462,17 @@ export default function App() {
             >
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <motion.div
-                  className="relative bg-gradient-to-br from-white to-gray-50 border border-gray-100 rounded-3xl p-10 shadow-xl"
+                  className="relative bg-gradient-to-br from-white to-gray-50 border border-gray-100 rounded-3xl p-6 lg:p-10 shadow-xl"
                   variants={reveal}
                 >
                   {/* Subtle accent background */}
                   <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full blur-2xl opacity-30"></div>
                   
                   <div className="relative z-10">
-                    <h2 className="text-4xl font-bold mb-6 text-gray-900">
+                    <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
                       Live <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Tolk</span> functie
                     </h2>
-                    <p className="text-gray-700 mb-8 text-lg">Doorbreek taalbarrières met real-time vertaling:</p>
+                    <p className="text-gray-700 mb-8 text-base lg:text-lg">Doorbreek taalbarrières met real-time vertaling:</p>
                     <ul className="space-y-4 mb-8">
                       {[
                         "Whisper luistert real-time mee tijdens het gesprek",
@@ -379,7 +484,7 @@ export default function App() {
                       ].map((item, index) => (
                         <motion.li
                           key={index}
-                          className="flex items-start gap-3 text-gray-600"
+                          className="flex items-start gap-3 text-gray-600 text-sm lg:text-base"
                           variants={reveal}
                           transition={{ delay: index * 0.1 }}
                         >
@@ -394,7 +499,7 @@ export default function App() {
                     </ul>
                     <motion.a
                       href="#tolk"
-                      className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
+                      className="inline-block px-6 lg:px-8 py-3 lg:py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -404,20 +509,20 @@ export default function App() {
                 </motion.div>
 
                 <motion.div
-                  className="relative rounded-3xl overflow-hidden shadow-2xl lg:order-2"
+                  className="relative rounded-3xl overflow-hidden shadow-2xl lg:order-2 order-first"
                   variants={reveal}
                   transition={{ delay: 0.2 }}
                 >
-                  <div className="bg-gradient-to-br from-blue-100 to-cyan-100 p-12 h-full flex items-center justify-center">
+                  <div className="bg-gradient-to-br from-blue-100 to-cyan-100 p-8 lg:p-12 h-full flex items-center justify-center">
                     <div className="text-center">
-                      <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center">
-                        <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <div className="w-24 h-24 lg:w-32 lg:h-32 mx-auto mb-6 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center">
+                        <svg className="w-12 h-12 lg:w-16 lg:h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
                           <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
                         </svg>
                       </div>
-                      <h3 className="text-2xl font-bold text-gray-800 mb-4">Real-time Vertaling</h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <h3 className="text-xl lg:text-2xl font-bold text-gray-800 mb-4">Real-time Vertaling</h3>
+                      <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
                         Whisper AI luistert continu mee en vertaalt direct wat gezegd wordt, 
                         zodat artsen en patiënten elkaar perfect begrijpen zonder onderbrekingen.
                       </p>
@@ -435,25 +540,25 @@ export default function App() {
               variants={reveal}
               viewport={{ once: true, margin: "-100px" }}
             >
-              <div className="relative bg-gradient-to-br from-white to-gray-50 border border-gray-100 rounded-3xl p-12 shadow-xl max-w-4xl mx-auto text-center"
+              <div className="relative bg-gradient-to-br from-white to-gray-50 border border-gray-100 rounded-3xl p-8 lg:p-12 shadow-xl max-w-4xl mx-auto text-center"
                    style={{ boxShadow: '0 25px 50px rgba(5, 111, 232, 0.1), 0 0 50px rgba(5, 189, 251, 0.05)' }}>
                 {/* Subtle accent background */}
                 <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-full blur-2xl opacity-30 -z-10"></div>
                 <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-full blur-2xl opacity-30 -z-10"></div>
                 
                 <div className="relative z-10">
-                  <h2 className="text-4xl font-bold mb-6 text-gray-900">
+                  <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
                     AI <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Chat Assistant</span>
                   </h2>
-                  <p className="text-gray-700 mb-6 text-lg max-w-2xl mx-auto">
+                  <p className="text-gray-700 mb-6 text-base lg:text-lg max-w-2xl mx-auto">
         Stel je medische vragen direct in de app en krijg slimme, gevalideerde ondersteuning.
       </p>
-                  <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+                  <p className="text-gray-600 mb-8 max-w-2xl mx-auto text-sm lg:text-base">
         Geen boeken of Google meer opzoeken: vraag het gewoon aan onze chat-bot en ontvang direct een antwoord.
       </p>
       <motion.a
         href="#chat"
-                    className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
+                    className="inline-block px-6 lg:px-8 py-3 lg:py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.98 }}
       >

@@ -25,13 +25,25 @@ export default function Navbar() {
               href="#features" 
               className="text-gray-800 font-medium hover:text-gray-900 transition-colors"
             >
-              Features
+              Functies
             </a>
             <a 
               href="#about" 
               className="text-gray-800 font-medium hover:text-gray-900 transition-colors"
             >
               Over Ons
+            </a>
+            <a 
+              href="#privacy" 
+              className="text-gray-800 font-medium hover:text-gray-900 transition-colors"
+            >
+              Privacy
+            </a>
+            <a 
+              href="#plan" 
+              className="text-gray-800 font-medium hover:text-gray-900 transition-colors"
+            >
+              Plan
             </a>
             <a 
               href="#contact" 
@@ -43,14 +55,23 @@ export default function Navbar() {
 
           {/* Right Side - Desktop */}
           <div className="hidden lg:flex items-center space-x-6 mr-12">
-            <motion.a
-              href="https://app.consultium.ai"
+            <motion.button
+              onClick={() => {
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => {
+                  // Dispatch custom event to update React state
+                  const customEvent = new CustomEvent('fillPilotMessage', {
+                    detail: { message: "Hallo, ik ben geïnteresseerd in deelname aan de gratis pilot van Consultium AI en zou graag meer informatie willen ontvangen over de mogelijkheden voor mijn praktijk. Kunnen we een demo inplannen?" }
+                  });
+                  window.dispatchEvent(customEvent);
+                }, 1000);
+              }}
               className="px-10 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium rounded-lg hover:shadow-lg transition-all duration-200"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
               Neem Contact Op
-            </motion.a>
+            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -83,7 +104,7 @@ export default function Navbar() {
                 className="block px-4 py-2 text-gray-800 font-medium hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Features
+                Functies
               </a>
               <a
                 href="#about"
@@ -93,19 +114,42 @@ export default function Navbar() {
                 Over Ons
               </a>
               <a
+                href="#privacy"
+                className="block px-4 py-2 text-gray-800 font-medium hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Privacy
+              </a>
+              <a
+                href="#plan"
+                className="block px-4 py-2 text-gray-800 font-medium hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Plan
+              </a>
+              <a
                 href="#contact"
                 className="block px-4 py-2 text-gray-800 font-medium hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
               </a>
-              <a
-                href="https://app.consultium.ai"
-                className="block px-4 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium rounded-lg text-center mt-4"
-                onClick={() => setIsMobileMenuOpen(false)}
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                  setTimeout(() => {
+                    // Dispatch custom event to update React state
+                    const customEvent = new CustomEvent('fillPilotMessage', {
+                      detail: { message: "Hallo, ik ben geïnteresseerd in deelname aan de gratis pilot van Consultium AI en zou graag meer informatie willen ontvangen over de mogelijkheden voor mijn praktijk. Kunnen we een demo inplannen?" }
+                    });
+                    window.dispatchEvent(customEvent);
+                  }, 1000);
+                }}
+                className="block w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium rounded-lg text-center mt-4"
               >
                 Neem Contact Op
-              </a>
+              </button>
             </div>
           </motion.div>
         )}

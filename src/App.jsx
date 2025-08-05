@@ -328,7 +328,7 @@ export default function App() {
           {/* Mobile Content - Only visible on mobile */}
           <div className="lg:hidden px-6 pt-8 pb-16">
             <motion.div
-              className="text-center mb-8"
+              className="text-center mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -345,18 +345,17 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="text-gray-900">Jouw consult,</span>
+              <span className="text-gray-900">Minder typen</span>
               <br />
-              <span className="text-gray-900">nu </span>
+              <span className="text-gray-900">Meer luisteren </span>
               <span 
                 style={{ 
                   color: '#056fe8'
                 }}
               >
-                automated
+                <br />
+                Betere zorg
               </span>
-              <br />
-              <span className="text-gray-900">met AI</span>
             </motion.h1>
 
             <motion.p
@@ -366,9 +365,8 @@ export default function App() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              <span className="text-gray-900">Consultium AI transcribeert automatisch je gesprekken en genereert 
-              professionele SOEP-verslagen binnen seconden, zodat je je volledig 
-              kunt focussen op je patiënt.</span>
+              <span className="text-gray-900">Consultium AI luistert live mee tijdens het consult en zet alles om in een professioneel SOEP-verslag; automatisch, accuraat en binnen enkele seconden.
+               Zodat jij kunt doen waar het écht om draait: zorgen voor je patiënt.</span>
             </motion.p>
 
             <motion.div
@@ -416,7 +414,7 @@ export default function App() {
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <span className="text-gray-800 font-semibold">Real-time transcriptie tijdens het consult</span>
+                <span className="text-gray-800 font-semibold text-lg">Real-time transcriptie tijdens het consult</span>
               </div>
               <div className="flex items-center gap-4 bg-white/60 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/40 shadow-lg">
                 <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center flex-shrink-0 shadow-lg">
@@ -424,7 +422,7 @@ export default function App() {
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <span className="text-gray-800 font-semibold">Automatische SOEP-structuur generatie</span>
+                <span className="text-gray-800 font-semibold text-lg">Automatisch gegenereerd SOEP-verslag</span>
               </div>
             </motion.div>
 

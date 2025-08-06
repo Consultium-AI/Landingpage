@@ -219,7 +219,7 @@ export default function App() {
           {/* Desktop Layout - Using flexbox for better zoom responsiveness */}
           <div className="hidden lg:flex items-center justify-between max-w-7xl mx-auto px-4 xl:px-6 relative z-20 min-h-[80vh]">
             {/* Left Content */}
-            <div className="w-1/2 xl:w-2/5 pr-8 xl:pr-12 flex-shrink-0">
+            <div className="w-1/2 xl:w-1/2 pr-6 xl:pr-8 flex-shrink-0">
             {/* Small tagline */}
             <motion.div
               className="text-left px-2 mb-6"
@@ -242,7 +242,8 @@ export default function App() {
             >
               <span className="text-gray-900">Minder typen</span>
               <br />
-              <span className="text-gray-900">Meer luisteren </span>
+              <span className="text-gray-900">Meer luisteren</span>
+              <br />
               <span 
                 style={{ 
                   color: '#056fe8'
@@ -274,8 +275,8 @@ export default function App() {
             >
               <motion.button
                 onClick={() => setShowVideoModal(true)}
-                className="px-8 py-4 font-semibold rounded-lg text-white text-lg transition-all duration-200"
-                style={{ background: 'linear-gradient(135deg, #056FE8 0%, #0580EB 100%)' }}
+                className="px-8 py-4 font-semibold rounded-lg text-white text-lg transition-all duration-200 shadow-lg"
+                style={{ background: 'linear-gradient(135deg, #056FE8 0%, #0580EB 50%, #0693EF 100%)' }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -328,7 +329,7 @@ export default function App() {
             </div>
 
             {/* Right Image - Desktop Only */}
-            <div className="w-1/2 xl:w-3/5 pl-8 xl:pl-12 flex-shrink-0 flex items-center justify-center">
+            <div className="w-1/2 xl:w-1/2 pl-6 xl:pl-8 flex-shrink-0 flex items-center justify-center overflow-visible">
               <motion.div
                 className="relative"
                 initial={{ opacity: 0, x: 20 }}
@@ -399,8 +400,8 @@ export default function App() {
             >
               <motion.button
                 onClick={() => setShowVideoModal(true)}
-                className="px-8 py-4 font-semibold rounded-lg text-white text-lg transition-all duration-200"
-                style={{ background: 'linear-gradient(135deg, #056FE8 0%, #0580EB 100%)' }}
+                className="px-8 py-4 font-semibold rounded-lg text-white text-lg transition-all duration-200 shadow-lg"
+                style={{ background: 'linear-gradient(135deg, #056FE8 0%, #0580EB 50%, #0693EF 100%)' }}
                 whileTap={{ scale: 0.98 }}
               >
                 <span className="text-white font-bold">Bekijk Demo</span>

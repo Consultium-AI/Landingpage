@@ -3,6 +3,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/Landingpage/',    // <-- hier de repository-naam
+  base: '/',    // <-- hier de repository-naam
   plugins: [react()],
 })

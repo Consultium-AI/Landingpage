@@ -216,8 +216,10 @@ export default function App() {
           className="relative pt-32 pb-20"
           style={{ minHeight: "120vh" }}
         >
-          {/* Left Content - Desktop: Absolutely positioned left, Mobile: Normal flow */}
-          <div className="absolute left-4 xl:left-20 top-32 w-1/3 xl:w-1/3 lg:w-2/5 z-20 lg:block hidden">
+          {/* Desktop Layout - Using flexbox for better zoom responsiveness */}
+          <div className="hidden lg:flex items-center justify-between max-w-7xl mx-auto px-4 xl:px-6 relative z-20 min-h-[80vh]">
+            {/* Left Content */}
+            <div className="w-1/2 xl:w-2/5 pr-8 xl:pr-12 flex-shrink-0">
             {/* Small tagline */}
             <motion.div
               className="text-left px-2 mb-6"
@@ -277,7 +279,7 @@ export default function App() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <span className="relative z-10 text-white font-bold">Bekijk Demo</span>
+                <span className="text-white font-bold">Bekijk Demo</span>
               </motion.button>
               
               <motion.button
@@ -291,7 +293,7 @@ export default function App() {
                     window.dispatchEvent(customEvent);
                   }, 1000);
                 }}
-                className="px-8 py-4 bg-transparent border-2 border-gray-300 text-gray-800 font-semibold rounded-lg hover:border-gray-400 transition-all duration-200 text-lg"
+                className="px-8 py-4 bg-white border-2 border-gray-300 text-gray-800 font-semibold rounded-lg hover:border-gray-400 transition-all duration-200 text-lg"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -323,6 +325,26 @@ export default function App() {
                 <span className="text-gray-800 font-semibold text-lg"> Automatisch gegenereerd SOEP-verslag</span>
               </div>
             </motion.div>
+            </div>
+
+            {/* Right Image - Desktop Only */}
+            <div className="w-1/2 xl:w-3/5 pl-8 xl:pl-12 flex-shrink-0 flex items-center justify-center">
+              <motion.div
+                className="relative"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+              >
+                <div className="relative">
+                  {/* Main App Dashboard - Large */}
+                  <img
+                    src={`${import.meta.env.BASE_URL}images/Dashboard.png`}
+                    alt="Consultium AI Dashboard"
+                    className="w-full h-auto rounded-2xl shadow-2xl"
+                  />
+                </div>
+              </motion.div>
+            </div>
           </div>
 
           {/* Mobile Content - Only visible on mobile */}
@@ -395,7 +417,7 @@ export default function App() {
                     window.dispatchEvent(customEvent);
                   }, 1000);
                 }}
-                className="px-8 py-4 bg-transparent border-2 border-gray-300 text-gray-800 font-semibold rounded-lg hover:border-gray-400 transition-all duration-200 text-lg"
+                className="px-8 py-4 bg-white border-2 border-gray-300 text-gray-800 font-semibold rounded-lg hover:border-gray-400 transition-all duration-200 text-lg"
                 whileTap={{ scale: 0.98 }}
               >
                 Contact Opnemen
@@ -441,22 +463,7 @@ export default function App() {
             </motion.div>
           </div>
 
-          {/* Right Image - Desktop Only */}
-          <motion.div
-            className="absolute right-4 xl:right-0 bottom-100 px-4 xl:px-8 z-10 hidden lg:block"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-          >
-            <div className="relative">
-                {/* Main App Dashboard - Large */}
-              <img
-                  src={`${import.meta.env.BASE_URL}images/Dashboard.png`}
-                  alt="Consultium AI Dashboard"
-                className="w-full h-auto rounded-2xl shadow-2xl"
-              />
-            </div>
-          </motion.div>
+
 
           {/* Wave Transition to Features */}
           <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20">

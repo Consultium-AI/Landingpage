@@ -75,60 +75,10 @@ body {
   padding-top: 6rem;      /* ruimte voor de navbar */
   padding-bottom: 6rem;
   min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  overflow: hidden; /* Prevent horizontal scroll on zoom */
 }
 
-#hero .relative {
-  position: relative;
-  z-index: 1;
-  max-width: 48rem;
-  width: 100%;
-}
-
-/* Titel */
-#hero h1 {
-  font-size: 2.5rem;      /* md:4rem via Tailwind */
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: white;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-}
-
-@media (min-width: 768px) {
-  #hero h1 {
-    font-size: 3.75rem;  /* md:text-6xl */
-  }
-}
-
-/* Subtitle */
-#hero p {
-  font-size: 1.125rem;    /* md:text-xl */
-  margin-bottom: 2rem;
-  color: white;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
-  max-width: 32rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Button */
-#hero button {
-  background: white;
-  color: #1D4ED8;          /* blauw-600 */
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  box-shadow: 0 10px 20px rgba( 29,78,216, 0.4);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-#hero button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 15px 25px rgba(29,78,216,0.5);
-}
+/* Removed conflicting hero styles to let Tailwind and new responsive rules handle everything */
 
 /* ---------------------------------------- */
 /*   KLEURCLASSES VOOR TEKST               */
@@ -376,16 +326,7 @@ body {
   background-size: 20px 20px;
 }
 
-/* Enhanced mobile responsiveness */
-@media (max-width: 1024px) {
-  .lg\:absolute {
-    position: relative !important;
-  }
-  
-  .lg\:grid-cols-2 {
-    grid-template-columns: 1fr !important;
-  }
-}
+/* Removed conflicting responsive rules to let Tailwind handle responsive behavior */
 
 /* Smooth transitions for all interactive elements */
 button, a, .interactive {
@@ -424,5 +365,74 @@ video {
   
   .dark\:text-white {
     color: #ffffff;
+  }
+}
+
+/* Hero section zoom responsiveness */
+@media (min-width: 1024px) {
+  #hero {
+    padding-left: clamp(1rem, 4vw, 2rem);
+    padding-right: clamp(1rem, 4vw, 2rem);
+  }
+  
+  /* Desktop flexbox layout with better zoom handling */
+  #hero .hidden.lg\:flex {
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Left content scaling */
+  #hero .hidden.lg\:flex > div:first-child {
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 45%;
+  }
+  
+  /* Right image scaling */
+  #hero .hidden.lg\:flex > div:last-child {
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 50%;
+  }
+  
+  /* Text scaling for better zoom responsiveness */
+  #hero h1 {
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  }
+  
+  #hero p {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    line-height: 1.5;
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  }
+  
+  #hero button {
+    font-size: clamp(0.875rem, 1.2vw, 1.125rem);
+    padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1.5rem, 2.5vw, 2rem);
+  }
+  
+  /* Image scaling */
+  #hero img {
+    max-width: 100%;
+    height: auto;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+  }
+  
+  #hero img:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Features list scaling */
+  #hero .space-y-3 {
+    margin-top: clamp(1rem, 2vw, 1.5rem);
+  }
+  
+  #hero .space-y-3 > div {
+    padding: clamp(0.75rem, 1.5vw, 1rem);
+    font-size: clamp(0.875rem, 1.2vw, 1.125rem);
   }
 }

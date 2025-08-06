@@ -219,7 +219,7 @@ export default function App() {
           {/* Desktop Layout - Using flexbox for better zoom responsiveness */}
           <div className="hidden lg:flex items-center justify-between max-w-7xl mx-auto px-4 xl:px-6 relative z-20 min-h-[80vh]">
             {/* Left Content */}
-            <div className="w-1/2 xl:w-1/2 pr-6 xl:pr-8 flex-shrink-0">
+            <div className="w-1/2 xl:w-1/2 pr-20 xl:pr-24 flex-shrink-0">
             {/* Small tagline */}
             <motion.div
               className="text-left px-2 mb-6"
@@ -329,7 +329,7 @@ export default function App() {
             </div>
 
             {/* Right Image - Desktop Only */}
-            <div className="w-1/2 xl:w-1/2 pl-6 xl:pl-8 flex-shrink-0 flex items-center justify-center overflow-visible">
+            <div className="w-1/2 xl:w-1/2 pl-2 xl:pl-4 flex-shrink-0 flex items-center justify-center overflow-visible">
               <motion.div
                 className="relative"
                 initial={{ opacity: 0, x: 20 }}

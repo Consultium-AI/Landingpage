@@ -417,15 +417,15 @@ video {
   
   /* Image scaling */
   #hero img {
-    max-width: 130%;
+    max-width: 140%;
     height: auto;
-    transform: scale(1.2);
+    transform: scale(1.25);
     transition: transform 0.3s ease;
-    margin-left: 10%;
+    margin-left: 5%;
   }
   
   #hero img:hover {
-    transform: scale(1.22);
+    transform: scale(1.27);
   }
   
   /* Features list scaling */

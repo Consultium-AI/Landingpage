@@ -219,7 +219,7 @@ export default function App() {
           {/* Desktop Layout - Using flexbox for better zoom responsiveness */}
           <div className="hidden lg:flex items-center justify-between max-w-7xl mx-auto px-4 xl:px-6 relative z-20 min-h-[80vh]">
             {/* Left Content */}
-            <div className="w-1/2 xl:w-1/2 pr-20 xl:pr-24 flex-shrink-0">
+            <div className="w-1/2 xl:w-1/2 pr-16 xl:pr-20 flex-shrink-0">
             {/* Small tagline */}
             <motion.div
               className="text-left px-2 mb-6"
@@ -234,8 +234,8 @@ export default function App() {
 
             {/* Main heading */}
             <motion.h1
-              className="text-left md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
-              style={{ textShadow: '2px 2px 4px rgba(255, 255, 255, 0.8)' }}
+              className="hero-title text-left md:text-6xl lg:text-[64px] font-extrabold mb-6"
+              style={{ textShadow: '0 0 0 rgba(0,0,0,0)' }}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -255,8 +255,8 @@ export default function App() {
 
             {/* Subtitle */}
             <motion.p
-              className="bottom left-0 text-left md:text-xl text-gray-700 mb-8 mt-8 leading-relaxed max-w-lg"
-              style={{ textShadow: '1px 1px 2px rgba(255, 255, 255, 0.6)' }}
+              className="text-left text-[18px] md:text-[20px] text-gray-700 mb-8 mt-8 leading-7 max-w-[640px]"
+              style={{ textShadow: '0 0 0 rgba(0,0,0,0)' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -275,7 +275,7 @@ export default function App() {
             >
               <motion.button
                 onClick={() => setShowVideoModal(true)}
-                className="px-8 py-4 font-semibold rounded-lg text-white text-lg transition-all duration-200 shadow-lg"
+                className="px-6 py-3 font-semibold rounded-xl text-white text-[16px] transition-all duration-200 shadow-lg"
                 style={{ background: 'linear-gradient(135deg, #056FE8 0%, #0580EB 50%, #0693EF 100%)' }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -294,7 +294,7 @@ export default function App() {
                     window.dispatchEvent(customEvent);
                   }, 1000);
                 }}
-                className="px-8 py-4 bg-white border-2 border-gray-300 text-gray-800 font-semibold rounded-lg hover:border-gray-400 transition-all duration-200 text-lg"
+                className="px-6 py-3 bg-white border-2 border-gray-300 text-gray-800 font-semibold rounded-xl hover:border-gray-400 transition-all duration-200 text-[16px]"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -362,15 +362,15 @@ export default function App() {
             </motion.div>
 
             <motion.h1
-              className="text-4xl font-bold mb-6 leading-tight text-center"
-              style={{ textShadow: '2px 2px 4px rgba(255, 255, 255, 0.8)' }}
+              className="hero-title text-[36px] font-extrabold mb-6 leading-[1.05] text-center"
+              style={{ textShadow: '0 0 0 rgba(0,0,0,0)' }}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <span className="text-gray-900">Minder typen</span>
               <br />
-              <span className="text-gray-900">Meer luisteren </span>
+              <span className="text-gray-900">Meer luisteren</span>
               <span 
                 style={{ 
                   color: '#056fe8'
@@ -382,8 +382,8 @@ export default function App() {
             </motion.h1>
 
             <motion.p
-              className="text-lg text-gray-700 mb-8 leading-relaxed text-center px-4"
-              style={{ textShadow: '1px 1px 2px rgba(255, 255, 255, 0.6)' }}
+              className="text-[18px] text-gray-700 mb-8 leading-7 text-center px-4"
+              style={{ textShadow: '0 0 0 rgba(0,0,0,0)' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -400,7 +400,7 @@ export default function App() {
             >
               <motion.button
                 onClick={() => setShowVideoModal(true)}
-                className="px-8 py-4 font-semibold rounded-lg text-white text-lg transition-all duration-200 shadow-lg"
+                className="px-6 py-3 font-semibold rounded-xl text-white text-[16px] transition-all duration-200 shadow-lg"
                 style={{ background: 'linear-gradient(135deg, #056FE8 0%, #0580EB 50%, #0693EF 100%)' }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -418,7 +418,7 @@ export default function App() {
                     window.dispatchEvent(customEvent);
                   }, 1000);
                 }}
-                className="px-8 py-4 bg-white border-2 border-gray-300 text-gray-800 font-semibold rounded-lg hover:border-gray-400 transition-all duration-200 text-lg"
+                className="px-6 py-3 bg-white border-2 border-gray-300 text-gray-800 font-semibold rounded-xl hover:border-gray-400 transition-all duration-200 text-[16px]"
                 whileTap={{ scale: 0.98 }}
               >
                 Contact Opnemen

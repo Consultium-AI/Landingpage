@@ -78,6 +78,22 @@ body {
   overflow: hidden; /* Prevent horizontal scroll on zoom */
 }
 
+/* Exact hero background to match design */
+#hero .hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(120% 120% at 18% 18%, #ECF5FF 0%, #E4F1FF 20%, #D7EBFF 40%, #C6E3FF 60%, #B4DBFF 75%, #A3D3FF 88%, #95CCFF 100%),
+    radial-gradient(80% 80% at 85% 40%, rgba(5, 111, 232, 0.35) 0%, rgba(5, 111, 232, 0.20) 35%, rgba(5, 111, 232, 0.08) 65%, transparent 85%);
+}
+
+/* Title sizing and tracking for pixel-accurate look */
+#hero .hero-title {
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+
 /* Removed conflicting hero styles to let Tailwind and new responsive rules handle everything */
 
 /* ---------------------------------------- */

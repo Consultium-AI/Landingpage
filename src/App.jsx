@@ -289,7 +289,7 @@ export default function App() {
                   setTimeout(() => {
                     // Dispatch custom event to update React state
                     const customEvent = new CustomEvent('fillPilotMessage', {
-                      detail: { message: "Hallo, ik ben geïnteresseerd in deelname aan de gratis pilot van Consultium AI en zou graag meer informatie willen ontvangen over de mogelijkheden voor mijn praktijk. Kunnen we een demo inplannen?" }
+                      detail: { message: "Hallo, ik ben geïnteresseerd in deelname aan de gratis pilot van Consultium AI en zou graag meer informatie willen ontvangen over de mogelijkheden voor mijn praktijk." }
                     });
                     window.dispatchEvent(customEvent);
                   }, 1000);

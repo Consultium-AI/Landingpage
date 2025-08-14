@@ -581,7 +581,6 @@ export default function App() {
                     <ul className="space-y-4">
                       {[
                         "Live Transcriptie; terwijl jij gewoon blijft praten",
-                        "Ultra snel met minder dan 3 seconde vertraging",
                         "Herkenning van meerdere sprekers (arts & patiënt)",
                         "Geen toetsenbord meer nodig: meer oogcontact, meer vertrouwen",
                       ].map((item, index) => (

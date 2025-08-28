@@ -671,20 +671,12 @@ export default function App() {
                   variants={reveal}
                   transition={{ delay: 0.2 }}
                 >
-                  <div className="bg-gradient-to-br from-blue-100 to-cyan-100 p-8 lg:p-12 h-full flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-24 h-24 lg:w-32 lg:h-32 mx-auto mb-6 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full flex items-center justify-center">
-                        <svg className="w-12 h-12 lg:w-16 lg:h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-                          <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-                        </svg>
-                      </div>
-                      <h3 className="text-xl lg:text-2xl font-bold text-gray-800 mb-4">Real-time Vertaling</h3>
-                      <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
-                        Consultium AI vertaalt gesprekken terwijl ze plaatsvinden, zonder dat jij hoeft te pauzeren
-                      </p>
-                    </div>
-                  </div>
+                  <video
+                    src={`${import.meta.env.BASE_URL}videos/AI-TOLK.mp4`}
+                    controls
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
                 </motion.div>
               </div>
             </motion.div>
@@ -966,7 +958,7 @@ Daarom bouwen we intuïtieve AI-tools die moeiteloos meedraaien in het dagelijks
                     <h4 className="text-xl font-bold text-gray-900">Certificering & Compliance</h4>
                   </div>
                                       <p className="text-gray-600 leading-relaxed mb-4">
-                     Op dit moment werken we aan de juridische basisdocumenten, waaronder een DPIA en DUA. Ook bereiden we de stappen voor richting CE-markering en een licht QMS voor informatiebeveiliging.
+                                      Op dit moment werken we aan de juridische basisdocumenten, waaronder een DPIA en DUA. Ook bereiden we de stappen voor richting CE-markering, maar ons product is voorlopig puur administratief. Daarnaast implementeren we een licht QMS voor informatiebeveiliging.
                      </p>
                    <p className="text-gray-600 leading-relaxed">
                      Hiermee bouwen we aan een veilige, transparante en toekomstbestendige oplossing, juridisch én technisch.

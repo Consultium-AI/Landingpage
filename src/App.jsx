@@ -228,7 +228,7 @@ export default function App() {
               transition={{ duration: 0.6 }}
             >
               <span className="text-sm font-medium text-gray-800 tracking-wider uppercase">
-                REVOLUTIONEER MEDISCHE DOCUMENTATIE
+              De volgende stap in medische AI
               </span>
             </motion.div>
 
@@ -261,7 +261,7 @@ export default function App() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              <span className="text-gray-900">Consultium AI luistert live mee tijdens het consult en zet alles om in een professioneel SOEP-verslag; automatisch, accuraat en binnen enkele seconden.
+              <span className="text-gray-900">Consultium AI luistert live mee tijdens het consult en zet alles om in een professioneel SOEP-verslag; automatisch, accuraat en actueel.
                Zodat jij kunt doen waar het écht om draait: zorgen voor je patiënt.
               </span>
             </motion.p>
@@ -357,7 +357,7 @@ export default function App() {
               transition={{ duration: 0.6 }}
             >
               <span className="text-sm font-medium text-gray-800 tracking-wider uppercase">
-                REVOLUTIONEER MEDISCHE DOCUMENTATIE
+                De volgende stap in medische AI
               </span>
             </motion.div>
 
@@ -859,7 +859,7 @@ export default function App() {
               Over <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">Consultium AI</span>
             </h2>
             <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-              Van een idee tot een revolutie in de medische documentatie
+              Van visie naar vernieuwing in de medische verslaggeving
             </p>
           </motion.div>
 
@@ -878,7 +878,7 @@ export default function App() {
                   Consultium AI is ontstaan vanuit een frustrerende observatie:
                   zorgverleners besteden te veel tijd aan administratie, en te weinig aan zorg. We zagen hoe artsen dagelijks overspoeld werden met papierwerk en dachten: dit moet beter kunnen.
                   </p>
-                  <p className="text-gray-600 leading-relaxed"> Met de nieuwste technologie willen we niet zomaar een tool maken, maar een oplossing die zorgprofessionals echt helpt. Door transcriptie en verslaglegging uit handen te nemen, geven we tijd terug aan de mensen die er het meest toe doen: artsen, verpleegkundigen en hun patiënten.</p>
+                  <p className="text-gray-600 leading-relaxed"> Met de nieuwste technologie willen we niet zomaar een tool maken, maar een oplossing die zorgprofessionals echt helpt. Door verslaglegging uit handen te nemen, geven we tijd terug aan de mensen die er het meest toe doen: artsen, verpleegkundigen en hun patiënten.</p>
                 </div>
               </div>
             </motion.div>

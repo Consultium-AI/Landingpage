@@ -958,7 +958,7 @@ Daarom bouwen we intuïtieve AI-tools die moeiteloos meedraaien in het dagelijks
                     <h4 className="text-xl font-bold text-gray-900">Certificering & Compliance</h4>
                   </div>
                                       <p className="text-gray-600 leading-relaxed mb-4">
-                                      Op dit moment werken we aan de juridische basisdocumenten, waaronder een DPIA en DUA. Ook bereiden we de stappen voor richting CE-markering, maar ons product is voorlopig puur administratief. Daarnaast implementeren we een licht QMS voor informatiebeveiliging.
+                                      Op dit moment werken we aan de juridische basisdocumenten, waaronder een DPIA. We bereiden de stappen voor richting CE‑markering, al is ons product voorlopig puur administratief. Daarnaast werken we aan certificering conform ISO 27001 en NEN 7510.
                      </p>
                    <p className="text-gray-600 leading-relaxed">
                      Hiermee bouwen we aan een veilige, transparante en toekomstbestendige oplossing, juridisch én technisch.

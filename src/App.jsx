@@ -35,7 +35,7 @@ export default function App() {
   const [showVideoModal, setShowVideoModal] = useState(false);
 
   useEffect(() => {
-    document.title = "Consultium AI – Slimme transcriptie voor de zorg";
+    document.title = "Consultium AI";
     
     // Event listener for navbar contact button
     const handleFillPilotMessage = (event) => {

@@ -1177,7 +1177,7 @@ Vraag een persoonlijke demo aan en ontdek hoe wij jouw praktijk kunnen transform
                             onClick={() => {
                               setFormData({
                                 ...formData,
-                                bericht: "Ik werk in de zorg en zou graag meedoen aan de gratis pilot fase van Consultium AI. Kunnen jullie mij meer informatie sturen over de implementatie en de voordelen van early adoption?"
+                                bericht: "Ik werk in de zorg en zou graag meedoen aan de gratis pilot fase van Consultium AI."
                               });
                             }}
                             className="px-4 py-2.5 text-sm bg-cyan-50 hover:bg-cyan-100 text-cyan-700 border border-cyan-200 rounded-lg transition-colors">

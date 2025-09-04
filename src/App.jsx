@@ -140,22 +140,7 @@ export default function App() {
         // Als geen template werkt, gebruik de sendForm methode
         throw new Error('Geen werkende template gevonden');
       }
-      // Stuur automatische antwoordmail naar de verzender (auto-reply)
-      try {
-        await emailjs.send(
-          serviceId,
-          'template_9029pti',
-          {
-            name: `${formData.voornaam} ${formData.achternaam}`,
-            email: formData.email,
-            to_email: formData.email,
-            message: formData.bericht
-          }
-        );
-      } catch (autoReplyError) {
-        console.log('Auto-reply versturen mislukt (niet kritiek):', autoReplyError);
-      }
-
+      
       setSubmitStatus('success');
       setFormData({ voornaam: '', achternaam: '', email: '', bericht: '' });
       
@@ -174,23 +159,7 @@ export default function App() {
           },
           'm_0ogVltjaSP8A6sf'
         );
-        // Ook hier auto-reply proberen te sturen
-        try {
-          await emailjs.send(
-            'service_eswaa5o',
-            'template_9029pti',
-            {
-              name: `${formData.voornaam} ${formData.achternaam}`,
-              email: formData.email,
-              to_email: formData.email,
-              message: formData.bericht
-            },
-            'm_0ogVltjaSP8A6sf'
-          );
-        } catch (autoReplyError) {
-          console.log('Auto-reply versturen mislukt (niet kritiek):', autoReplyError);
-        }
-
+        
         setSubmitStatus('success');
         setFormData({ voornaam: '', achternaam: '', email: '', bericht: '' });
         

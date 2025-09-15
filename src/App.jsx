@@ -25,6 +25,7 @@ export default function App() {
     voornaam: '',
     achternaam: '',
     email: '',
+    huisartspraktijk: '',
     bericht: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,11 +44,11 @@ export default function App() {
         ...prev,
         bericht: event.detail.message
       }));
-      // Focus the message field after state update
+      // Focus the huisartspraktijk field to stimulate completing the signup
       setTimeout(() => {
-        const berichtField = document.getElementById('bericht');
-        if (berichtField) {
-          berichtField.focus();
+        const praktijkField = document.getElementById('huisartspraktijk');
+        if (praktijkField) {
+          praktijkField.focus();
         }
       }, 100);
     };
@@ -107,10 +108,14 @@ export default function App() {
       // Initialiseer EmailJS
       emailjs.init(publicKey);
 
+      const composedMessage = (formData.bericht && formData.bericht.trim().length > 0)
+        ? formData.bericht
+        : `Ik wil graag deelnemen aan de pilot.\nHuisartspraktijk: ${formData.huisartspraktijk || '-'}`;
+
       const templateParams = {
-        name: `${formData.voornaam} ${formData.achternaam}`,
+        name: `${formData.voornaam} ${formData.achternaam}`.trim(),
         email: formData.email,
-        message: formData.bericht,
+        message: composedMessage,
         subject: 'Pilot-deelname',
         to_email: 'info@consultiumai.com'
       };
@@ -142,7 +147,7 @@ export default function App() {
       }
       
       setSubmitStatus('success');
-      setFormData({ voornaam: '', achternaam: '', email: '', bericht: '' });
+      setFormData({ voornaam: '', achternaam: '', email: '', huisartspraktijk: '', bericht: '' });
       
     } catch (error) {
       console.error('Email send failed:', error);
@@ -153,15 +158,17 @@ export default function App() {
           'service_eswaa5o',
           'contact_form', // Meest generieke template naam
           {
-            name: `${formData.voornaam} ${formData.achternaam}`,
+            name: `${formData.voornaam} ${formData.achternaam}`.trim(),
             email: formData.email,
-            message: formData.bericht
+            message: (formData.bericht && formData.bericht.trim().length > 0)
+              ? formData.bericht
+              : `Ik wil graag deelnemen aan de pilot.\nHuisartspraktijk: ${formData.huisartspraktijk || '-'}`
           },
           'm_0ogVltjaSP8A6sf'
         );
         
         setSubmitStatus('success');
-        setFormData({ voornaam: '', achternaam: '', email: '', bericht: '' });
+        setFormData({ voornaam: '', achternaam: '', email: '', huisartspraktijk: '', bericht: '' });
         
       } catch (finalError) {
         console.error('Final attempt failed:', finalError);
@@ -1056,8 +1063,7 @@ Daarom bouwen we intuïtieve AI-tools die moeiteloos meedraaien in het dagelijks
                 </span>
               </h2>
               <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-              Sluit je aan bij collega-zorgverleners die met Consultium AI tijd winnen, administratie verlichten en meer ruimte creëren voor échte patiëntenzorg.
-Vraag een persoonlijke demo aan en ontdek hoe wij jouw praktijk kunnen transformeren.
+              Sluit je aan bij collega-zorgverleners die met Consultium AI tijd winnen, administratie verlichten en meer ruimte creëren voor echte patiëntenzorg. Schrijf je vandaag nog in voor de gratis pilot en ervaar hoe wij jouw praktijk kunnen transformeren.
               </p>
     </motion.div>
 
@@ -1078,10 +1084,10 @@ Vraag een persoonlijke demo aan en ontdek hoe wij jouw praktijk kunnen transform
                   <div className="flex flex-col items-center mb-8">
                     <div className="flex items-center gap-4 mb-2">
                       <h3 className="text-3xl font-bold text-gray-900">
-                        Stuur ons een bericht
+                      Meld je aan voor de 3 maanden Pilot
                   </h3>
                       <span className="px-3 py-1 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-sm font-semibold rounded-full">
-                        Beta
+                        GRATIS
                       </span>
                     </div>
                     <p className="text-gray-600 text-lg max-w-2xl text-center">
@@ -1097,7 +1103,7 @@ Vraag een persoonlijke demo aan en ontdek hoe wij jouw praktijk kunnen transform
                         </svg>
                       </div>
                       <div>
-                        <p className="text-blue-800 font-medium mb-1">Gratis Pilot Programma</p>
+                        <p className="text-blue-800 font-medium mb-1">Pilot programma (start oktober)</p>
                         <p className="text-blue-700 text-sm">
                           Als early adopter krijg je:
                         </p>
@@ -1162,42 +1168,22 @@ Vraag een persoonlijke demo aan en ontdek hoe wij jouw praktijk kunnen transform
                       />
                       </div>
 
-                    {/* Smart Message Suggestions */}
-                      <div>
-                      <label htmlFor="bericht" className="block text-base font-semibold text-gray-700 mb-2">
-                        Bericht <span className="text-red-500">*</span>
+                    {/* Huisartspraktijk */}
+                    <div>
+                      <label htmlFor="huisartspraktijk" className="block text-base font-semibold text-gray-700 mb-2">
+                        Huisartspraktijk <span className="text-red-500">*</span>
                       </label>
-                      
-                      {/* Smart Suggestions */}
-                      <div className="mb-3 space-y-2">
-                        <p className="text-xs text-gray-600">Snelle keuzes:</p>
-                        <div className="flex flex-wrap gap-2">
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setFormData({
-                                ...formData,
-                                bericht: "Ik werk in de zorg en zou graag meedoen aan de gratis pilot fase van Consultium AI."
-                              });
-                            }}
-                            className="px-4 py-2.5 text-sm bg-cyan-50 hover:bg-cyan-100 text-cyan-700 border border-cyan-200 rounded-lg transition-colors">
-                              Ik wil meedoen aan de pilot!
-
-                            </button>
-                      </div>
-                    </div>
-
-                      <textarea
-                        id="bericht"
-                        name="bericht"
-                        value={formData.bericht}
+                      <input
+                        type="text"
+                        id="huisartspraktijk"
+                        name="huisartspraktijk"
+                        value={formData.huisartspraktijk}
                         onChange={handleInputChange}
                         required
-                        rows="6"
-                        className="w-full px-5 py-4 text-lg border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none bg-white"
-                        placeholder="Stel hier je vraag, of klik op een snelle keuze hierboven..."
+                        className="w-full px-5 py-4 text-lg border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white"
+                        placeholder="Naam van uw huisartspraktijk"
                       />
-                  </div>
+                    </div>
 
                     {/* Submit Button */}
                     <motion.button
@@ -1222,7 +1208,7 @@ Vraag een persoonlijke demo aan en ontdek hoe wij jouw praktijk kunnen transform
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                           </svg>
                         )}
-                        {isSubmitting ? 'Wordt verstuurd...' : 'Versturen'}
+                        {isSubmitting ? 'Wordt verstuurd...' : 'Ik wil graag deelnemen aan de pilot'}
                       </span>
                     </motion.button>
 
@@ -1370,7 +1356,7 @@ Vraag een persoonlijke demo aan en ontdek hoe wij jouw praktijk kunnen transform
                       <svg className="w-4 h-4 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
                       </svg>
-                      <span>Strevelsweg 700<br />3083AS Rotterdam<br />Nederland</span>
+                      <span>Jan Pietersz. Coenstraat 7<br />2595WP 's-Gravenhage<br />Den Haag</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">

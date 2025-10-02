@@ -1380,8 +1380,27 @@ Daarom bouwen we intuïtieve AI-tools die moeiteloos meedraaien in het dagelijks
               <div className="border-t border-gray-800 pt-8">
                 <div className="text-center">
                   <div className="text-gray-400 text-sm">
-                    © 2025 Consultium AI. Alle rechten voorbehouden.
+                    © 2025 Consultium. Alle rechten voorbehouden.
                   </div>
+                <div className="mt-3 flex items-center justify-center gap-6">
+                  <a
+                    href={`${import.meta.env.BASE_URL}files/Algemene_voorwaarden_consultium.pdf`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white text-sm underline"
+                  >
+                    Algemene voorwaarden
+                  </a>
+                  <span className="text-gray-600">|</span>
+                  <a
+                    href={`${import.meta.env.BASE_URL}files/Privacyverklaring%20-%20CONSULTIUM.pdf`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white text-sm underline"
+                  >
+                    Privacyverklaring
+                  </a>
+                </div>
                 </div>
               </div>
             </div>

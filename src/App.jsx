@@ -955,7 +955,7 @@ Daarom bouwen we intuïtieve AI-tools die moeiteloos meedraaien in het dagelijks
                     <h4 className="text-xl font-bold text-gray-900">Privacy-by-Design</h4>
                   </div>
                   <p className="text-gray-600 leading-relaxed">
-                    Bij Consultium AI staat gegevensbescherming centraal. Onze technologie is ontworpen volgens het principe privacy-by-design: spraak wordt uitsluitend lokaal of tijdelijk verwerkt en direct na transcriptie gewist. We slaan geen patiëntgegevens op, hebben geen toegang tot medische dossiers en hanteren de basisprincipes van de AVG, zoals minimale dataverwerking en pseudonimisering.
+                    Bij Consultium AI staat gegevensbescherming centraal. Onze technologie is ontworpen volgens het principe privacy-by-design: spraak wordt uitsluitend lokaal of tijdelijk verwerkt en direct na transcriptie gewist. We slaan geen patiëntgegevens op, hebben geen toegang tot medische dossiers en hanteren de basisprincipes van de AVG, zoals minimale dataverwerking.
                   </p>
                 </div>
 

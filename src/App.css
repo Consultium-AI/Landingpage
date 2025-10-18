@@ -116,6 +116,7 @@ body {
   background: linear-gradient(90deg, #6366f1, #3b82f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Shine-keyframes voor badge animatie */

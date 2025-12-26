@@ -1,12 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Lightweight Video Player Component
-function CustomVideoPlayer({ videoRef, src, gradient, allowSound = false }) {
+// Enhanced Video Player Component with scrubbing and fullscreen modal
+function CustomVideoPlayer({ videoRef, src, gradient, allowSound = false, onFullscreen, showFullscreenButton = true }) {
+  const internalVideoRef = useRef(null);
+  const progressBarRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const internalVideoRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [showControls, setShowControls] = useState(true);
+  const controlsTimeoutRef = useRef(null);
 
   useEffect(() => {
     if (videoRef && typeof videoRef === 'function') {
@@ -22,7 +26,11 @@ function CustomVideoPlayer({ videoRef, src, gradient, allowSound = false }) {
 
     video.muted = !allowSound;
 
-    const updateTime = () => setCurrentTime(video.currentTime);
+    const updateTime = () => {
+      if (!isDragging) {
+        setCurrentTime(video.currentTime);
+      }
+    };
     const updateDuration = () => setDuration(video.duration);
     const handlePlay = () => setIsPlaying(true);
     const handlePause = () => setIsPlaying(false);
@@ -44,7 +52,7 @@ function CustomVideoPlayer({ videoRef, src, gradient, allowSound = false }) {
       video.removeEventListener('pause', handlePause);
       video.removeEventListener('ended', handleEnded);
     };
-  }, [videoRef, src, allowSound]);
+  }, [videoRef, src, allowSound, isDragging]);
 
   useEffect(() => {
     const video = internalVideoRef.current;
@@ -57,7 +65,30 @@ function CustomVideoPlayer({ videoRef, src, gradient, allowSound = false }) {
     }
   }, [src, allowSound]);
 
-  const togglePlay = () => {
+  // Auto-hide controls
+  useEffect(() => {
+    const resetControlsTimeout = () => {
+      setShowControls(true);
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+      controlsTimeoutRef.current = setTimeout(() => {
+        if (isPlaying) {
+          setShowControls(false);
+        }
+      }, 3000);
+    };
+
+    resetControlsTimeout();
+    return () => {
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+    };
+  }, [isPlaying, currentTime]);
+
+  const togglePlay = (e) => {
+    e.stopPropagation();
     const video = internalVideoRef.current;
     if (video) {
       if (isPlaying) {
@@ -68,44 +99,130 @@ function CustomVideoPlayer({ videoRef, src, gradient, allowSound = false }) {
     }
   };
 
+  const handleProgressClick = (e) => {
+    e.stopPropagation();
+    const video = internalVideoRef.current;
+    const progressBar = progressBarRef.current;
+    if (video && progressBar && duration) {
+      const rect = progressBar.getBoundingClientRect();
+      const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      video.currentTime = percent * duration;
+      setCurrentTime(video.currentTime);
+    }
+  };
+
+  const handleProgressMouseDown = (e) => {
+    e.stopPropagation();
+    setIsDragging(true);
+    handleProgressClick(e);
+  };
+
+  useEffect(() => {
+    if (isDragging) {
+      const handleMouseMove = (e) => {
+        const video = internalVideoRef.current;
+        const progressBar = progressBarRef.current;
+        if (video && progressBar && duration) {
+          const rect = progressBar.getBoundingClientRect();
+          const percent = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+          video.currentTime = percent * duration;
+          setCurrentTime(video.currentTime);
+        }
+      };
+      const handleMouseUp = () => setIsDragging(false);
+      
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+      
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('mouseup', handleMouseUp);
+      };
+    }
+  }, [isDragging, duration]);
+
+  const handleFullscreen = (e) => {
+    e.stopPropagation();
+    if (onFullscreen) {
+      onFullscreen();
+    }
+  };
+
   const progress = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className="relative cursor-pointer" onClick={togglePlay}>
+    <div
+      className="relative w-full aspect-video bg-black group cursor-pointer"
+      onClick={togglePlay}
+      onMouseMove={() => setShowControls(true)}
+      onMouseLeave={() => {
+        if (isPlaying) {
+          setTimeout(() => setShowControls(false), 2000);
+        }
+      }}
+    >
       <video
         ref={internalVideoRef}
         src={src}
         muted={!allowSound}
         loop={false}
         playsInline
-        className="w-full aspect-video object-cover"
+        className="w-full h-full object-cover"
       />
 
-      {/* Play Button */}
-      {!isPlaying && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center shadow-xl"
-          >
-            <svg className="w-10 h-10 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </motion.div>
-        </div>
-      )}
+      {/* Progress Bar - Clickable for scrubbing */}
+      <div
+        ref={progressBarRef}
+        className="absolute bottom-0 left-0 right-0 h-1.5 bg-white/20 cursor-pointer group/progress"
+        onClick={handleProgressClick}
+        onMouseDown={handleProgressMouseDown}
+      >
+        <motion.div
+          className={`h-full bg-gradient-to-r ${gradient} transition-all duration-150 relative group-hover/progress:h-2`}
+          style={{ width: `${progress}%` }}
+          initial={false}
+        >
+          {/* Progress Handle */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3 h-3 rounded-full bg-white opacity-0 group-hover/progress:opacity-100 transition-opacity shadow-lg" />
+        </motion.div>
+      </div>
 
-      {/* Progress Bar */}
-      {(isPlaying || currentTime > 0) && (
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/30 pointer-events-none">
+      {/* Play/Pause Overlay */}
+      <AnimatePresence>
+        {showControls && (
           <motion.div
-            className={`h-full bg-gradient-to-r ${gradient}`}
-            style={{ width: `${progress}%` }}
-            initial={false}
-            transition={{ duration: 0.1 }}
-          />
-        </div>
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          >
+            {!isPlaying && (
+              <motion.div
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center shadow-xl"
+              >
+                <svg className="w-10 h-10 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </motion.div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Fullscreen Button - Bottom Right */}
+      {showFullscreenButton && onFullscreen && (
+        <button
+          onClick={handleFullscreen}
+          className="absolute bottom-3 right-3 z-10 w-10 h-10 flex items-center justify-center rounded-lg bg-black/60 hover:bg-black/80 backdrop-blur-sm border border-white/20 text-white transition-all duration-200 pointer-events-auto"
+          aria-label="Fullscreen"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+          </svg>
+        </button>
       )}
     </div>
   );
@@ -163,7 +280,11 @@ const features = [
 
 export default function FeaturesSection() {
   const [activeFeature, setActiveFeature] = useState(0);
+  const [showFullscreenModal, setShowFullscreenModal] = useState(false);
+  const [fullscreenVideoSrc, setFullscreenVideoSrc] = useState("");
+  const [fullscreenGradient, setFullscreenGradient] = useState("");
   const videoRefs = useRef({});
+  const fullscreenVideoRef = useRef(null);
 
   useEffect(() => {
     Object.keys(videoRefs.current).forEach((key) => {
@@ -174,6 +295,65 @@ export default function FeaturesSection() {
       }
     });
   }, [activeFeature]);
+
+  // Close modal on Escape key & prevent scroll when open
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && showFullscreenModal) {
+        setShowFullscreenModal(false);
+      }
+    };
+    
+    if (showFullscreenModal) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleEscape);
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, [showFullscreenModal]);
+
+  const handleFullscreen = () => {
+    const currentVideo = videoRefs.current[activeFeature];
+    if (currentVideo) {
+      // Save current video time and playing state
+      const currentTime = currentVideo.currentTime;
+      const wasPlaying = !currentVideo.paused;
+      
+      // Pause original video
+      currentVideo.pause();
+      
+      // Set fullscreen video source
+      setFullscreenVideoSrc(`${import.meta.env.BASE_URL}${currentFeature.video}`);
+      setFullscreenGradient(currentFeature.gradient);
+      setShowFullscreenModal(true);
+      
+      // Restore video time after modal opens and video loads
+      const restoreVideoState = () => {
+        if (fullscreenVideoRef.current) {
+          fullscreenVideoRef.current.currentTime = currentTime;
+          if (wasPlaying) {
+            fullscreenVideoRef.current.play().catch(console.error);
+          }
+        }
+      };
+      
+      // Wait for video metadata to load
+      setTimeout(() => {
+        if (fullscreenVideoRef.current) {
+          if (fullscreenVideoRef.current.readyState >= 1) {
+            restoreVideoState();
+          } else {
+            fullscreenVideoRef.current.addEventListener('loadedmetadata', restoreVideoState, { once: true });
+          }
+        }
+      }, 100);
+    }
+  };
 
   const currentFeature = features[activeFeature];
 
@@ -354,6 +534,7 @@ export default function FeaturesSection() {
                       src={`${import.meta.env.BASE_URL}${currentFeature.video}`}
                       gradient={currentFeature.gradient}
                       allowSound={currentFeature.id === "tolk"}
+                      onFullscreen={handleFullscreen}
                     />
                   </div>
                 </div>
@@ -361,6 +542,62 @@ export default function FeaturesSection() {
             </div>
           </div>
         </motion.div>
+      </AnimatePresence>
+
+      {/* Fullscreen Video Modal */}
+      <AnimatePresence>
+        {showFullscreenModal && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setShowFullscreenModal(false)}
+          >
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-gray-900/95 backdrop-blur-sm" />
+            
+            {/* Close Button */}
+            <button
+              onClick={() => setShowFullscreenModal(false)}
+              className="absolute top-6 right-6 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white transition-all duration-200"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Video Container */}
+            <motion.div
+              className="relative w-full max-w-5xl mx-6 z-10"
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Glow Effect */}
+              <div className={`absolute -inset-1 bg-gradient-to-r ${fullscreenGradient} opacity-20 rounded-2xl blur-xl`} />
+              
+              {/* Video Wrapper */}
+              <div className="relative bg-gray-900 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+                <CustomVideoPlayer
+                  videoRef={fullscreenVideoRef}
+                  src={fullscreenVideoSrc}
+                  gradient={fullscreenGradient}
+                  allowSound={currentFeature.id === "tolk"}
+                  showFullscreenButton={false}
+                />
+              </div>
+
+              {/* Caption */}
+              <p className="text-center text-white/60 text-sm mt-4">
+                Klik buiten de video of druk op Escape om te sluiten
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
       </AnimatePresence>
     </section>
   );

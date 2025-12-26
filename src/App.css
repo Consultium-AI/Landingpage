@@ -1,457 +1,121 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+/* ================================================
+   CONSULTIUM AI - OPTIMIZED STYLES
+   ================================================ */
 
+/* ================================================
+   CSS CUSTOM PROPERTIES
+   ================================================ */
 :root {
-  --accent: #3A29FF;
-  --text-light: #F5F5F5;
-  --primary-blue: #056FE8;
-  --blue: #0580EB;
-  --light-blue: #0693EF;
-  --cyan-blue: #05BDFB;
-  --sky-blue: #06A6F5;
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ---------------------------------------- */
-/*   FLOWING BACKGROUND ANIMATIONS         */
-/* ---------------------------------------- */
-@keyframes flow1 {
-  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-  33% { transform: translate(30px, -30px) rotate(120deg) scale(1.1); }
-  66% { transform: translate(-20px, 20px) rotate(240deg) scale(0.9); }
-}
-
-@keyframes flow2 {
-  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-  50% { transform: translate(-40px, 40px) rotate(180deg) scale(1.2); }
-}
-
-@keyframes flow3 {
-  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-  25% { transform: translate(20px, 30px) rotate(90deg) scale(1.1); }
-  75% { transform: translate(-30px, -20px) rotate(270deg) scale(0.95); }
-}
-
-.flow-1 { animation: flow1 20s ease-in-out infinite; }
-.flow-2 { animation: flow2 25s ease-in-out infinite; }
-.flow-3 { animation: flow3 30s ease-in-out infinite; }
-
-/* ---------------------------------------- */
-/*   CUSTOM GRADIENT UTILITIES             */
-/* ---------------------------------------- */
-.bg-gradient-radial {
-  background: radial-gradient(circle, var(--tw-gradient-stops));
-}
-
-/* ---------------------------------------- */
-/*   ALGEMENE RESET + BODY                 */
-/* ---------------------------------------- */
+/* ================================================
+   GLOBAL STYLES
+   ================================================ */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  color: #1E293B;
-  background: transparent;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1f2937;
+  background: #ffffff;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.6;
 }
 
-/* ---------------------------------------- */
-/*   NAVBAR                                */
-/* ---------------------------------------- */
-/* Let op: de transparantie/blur zit in Navbar.jsx */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
 
-/* ---------------------------------------- */
-/*   HERO SECTION                          */
-/* ---------------------------------------- */
+/* ================================================
+   HERO SECTION
+   ================================================ */
 #hero {
   position: relative;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding-top: 6rem;      /* ruimte voor de navbar */
-  padding-bottom: 6rem;
-  min-height: 80vh;
-  overflow: hidden; /* Prevent horizontal scroll on zoom */
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Exact hero background to match design */
-#hero .hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background:
-    radial-gradient(120% 120% at 18% 18%, #ECF5FF 0%, #E4F1FF 20%, #D7EBFF 40%, #C6E3FF 60%, #B4DBFF 75%, #A3D3FF 88%, #95CCFF 100%),
-    radial-gradient(80% 80% at 85% 40%, rgba(5, 111, 232, 0.35) 0%, rgba(5, 111, 232, 0.20) 35%, rgba(5, 111, 232, 0.08) 65%, transparent 85%);
+.hero-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  overflow: visible;
 }
 
-/* Title sizing and tracking for pixel-accurate look */
-#hero .hero-title {
-  letter-spacing: -0.015em;
-  line-height: 1.05;
+.hero-title span {
+  display: block;
+  line-height: inherit;
+  overflow: visible;
 }
 
-/* Removed conflicting hero styles to let Tailwind and new responsive rules handle everything */
-
-/* ---------------------------------------- */
-/*   KLEURCLASSES VOOR TEKST               */
-/* ---------------------------------------- */
-.text-blue-400 {
-  color: #60A5FA;
-}
-.text-blue-300 {
-  color: #93C5FD;
-}
-@keyframes shine {
-  0%   { transform: translateX(-100%) skewX(-20deg); }
-  50%  { transform: translateX(100%) skewX(-20deg); }
-  100% { transform: translateX(200%) skewX(-20deg); }
-}
-
-/* CountUp tekst mag gradient krijgen */
-.text-gradient {
-  background: linear-gradient(90deg, #6366f1, #3b82f6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Shine-keyframes voor badge animatie */
-@keyframes shine {
-  0% { transform: translateX(-100%) skewX(-20deg); }
-  100% { transform: translateX(200%) skewX(-20deg); }
-}
-/* ---------------------------------------- */
-/*   GLARE HOVER EFFECT VOOR KAARTEN       */
-/* ---------------------------------------- */
-.glare-card {
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.glare-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-/* De glans-laag */
-.glare-card::after {
-  content: "";
-  position: absolute;
-  top: -100%;
-  left: -100%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle at 50% 0%,
-    rgba(255,255,255,0.4) 0%,
-    rgba(255,255,255,0) 60%
-  );
-  transform: rotate(45deg);
-  transition: transform 0.6s ease;
-  pointer-events: none;
-}
-.glare-card:hover::after {
-  /* beweeg de glans diagonaal over de kaart */
-  transform: rotate(45deg) translate(50%, 50%);
-}
-
-/* App.css */
-
-/* Custom animations */
-@keyframes shine {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(2deg); }
-}
-
-@keyframes pulse-soft {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
-}
-
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Global styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  overflow-x: hidden;
-}
-
-/* Enhanced button hover effects */
-.btn-gradient {
-  background: linear-gradient(135deg, #056FE8 0%, #0580EB 50%, #0693EF 100%);
-  background-size: 200% 200%;
-  animation: gradient-shift 3s ease infinite;
-  transition: all 0.3s ease;
-}
-
-.btn-gradient:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 40px rgba(5, 111, 232, 0.3);
-}
-
-/* Glass morphism effect */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Custom scrollbar */
+/* ================================================
+   CUSTOM SCROLLBAR
+   ================================================ */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #056FE8, #0693EF);
+  background: linear-gradient(180deg, #2563eb, #0891b2);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #0580EB, #05BDFB);
+  background: linear-gradient(180deg, #1d4ed8, #0e7490);
 }
 
-/* Floating animation for hero elements */
-.float-animation {
-  animation: float 6s ease-in-out infinite;
-}
-
-.float-animation:nth-child(2) {
-  animation-delay: -2s;
-}
-
-.float-animation:nth-child(3) {
-  animation-delay: -4s;
-}
-
-/* Enhanced card hover effects */
-.card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-hover:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-}
-
-/* Section padding adjustments */
-.section-padding {
-  padding: 6rem 0;
-}
-
-@media (max-width: 768px) {
-  .section-padding {
-    padding: 4rem 0;
-  }
-}
-
-/* Responsive text sizes */
+/* ================================================
+   RESPONSIVE ADJUSTMENTS
+   ================================================ */
 @media (max-width: 640px) {
+  #hero {
+    min-height: 100vh;
+    height: auto;
+    padding-top: 80px;
+    padding-bottom: 60px;
+  }
+  
   .hero-title {
-    font-size: 2.5rem !important;
-    line-height: 1.2;
-  }
-  
-  .section-title {
     font-size: 2rem !important;
+    line-height: 1.15;
   }
-  
-  .container-mobile {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
-
-/* Enhanced gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #056FE8 0%, #0693EF 50%, #05BDFB 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 4s ease infinite;
-}
-
-/* Improved focus states for accessibility */
-.focus-ring:focus {
-  outline: 2px solid #056FE8;
-  outline-offset: 2px;
-}
-
-/* Loading animation */
-.loading-pulse {
-  animation: pulse-soft 2s ease-in-out infinite;
-}
-
-/* Enhanced shadow effects */
-.shadow-luxury {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 32px rgba(0, 0, 0, 0.08);
-}
-
-.shadow-luxury-hover:hover {
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), 0 12px 48px rgba(0, 0, 0, 0.12);
-}
-
-/* Grid improvements */
-.grid-auto-fit {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
 }
 
 @media (max-width: 768px) {
-  .grid-auto-fit {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .hero-title {
+    font-size: 2.25rem !important;
+    line-height: 1.15;
   }
 }
 
-/* Animation delays for stagger effect */
-.stagger-1 { animation-delay: 0.1s; }
-.stagger-2 { animation-delay: 0.2s; }
-.stagger-3 { animation-delay: 0.3s; }
-.stagger-4 { animation-delay: 0.4s; }
-
-/* Background pattern overlay */
-.pattern-overlay {
-  background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0);
-  background-size: 20px 20px;
-}
-
-/* Removed conflicting responsive rules to let Tailwind handle responsive behavior */
-
-/* Smooth transitions for all interactive elements */
-button, a, .interactive {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Enhanced video styling */
-video {
-  border-radius: 1.5rem;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-}
-
-/* Improved spacing system */
-.space-y-6 > * + * {
-  margin-top: 1.5rem;
-}
-
-.space-y-8 > * + * {
-  margin-top: 2rem;
-}
-
-/* Performance optimizations */
-.will-change-transform {
+/* ================================================
+   PERFORMANCE UTILITIES
+   ================================================ */
+.gpu-accelerated {
+  transform: translateZ(0);
   will-change: transform;
-}
-
-.will-change-opacity {
-  will-change: opacity;
-}
-
-/* Dark mode preparation */
-@media (prefers-color-scheme: dark) {
-  .dark\:bg-gray-900 {
-    background-color: #111827;
-  }
-  
-  .dark\:text-white {
-    color: #ffffff;
-  }
-}
-
-/* Hero section zoom responsiveness */
-@media (min-width: 1024px) {
-  #hero {
-    padding-left: clamp(1rem, 4vw, 2rem);
-    padding-right: clamp(1rem, 4vw, 2rem);
-  }
-  
-  /* Desktop flexbox layout with better zoom handling */
-  #hero .hidden.lg\:flex {
-    gap: clamp(3rem, 5vw, 6rem);
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  /* Left content scaling */
-  #hero .hidden.lg\:flex > div:first-child {
-    flex: 0 1 auto;
-    min-width: 0;
-    max-width: 45%;
-  }
-  
-  /* Right image scaling */
-  #hero .hidden.lg\:flex > div:last-child {
-    flex: 0 1 auto;
-    min-width: 0;
-    max-width: 50%;
-  }
-  
-  /* Text scaling for better zoom responsiveness */
-  #hero h1 {
-    font-size: clamp(2.5rem, 4vw, 4.5rem);
-    line-height: 1.1;
-    margin-bottom: clamp(1.5rem, 3vw, 2rem);
-    min-height: 3.3em; /* Ensures 3 lines minimum */
-  }
-  
-  #hero p {
-    font-size: clamp(1rem, 1.5vw, 1.25rem);
-    line-height: 1.5;
-    margin-bottom: clamp(1.5rem, 3vw, 2rem);
-  }
-  
-  #hero button {
-    font-size: clamp(0.875rem, 1.2vw, 1.125rem);
-    padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1.5rem, 2.5vw, 2rem);
-  }
-  
-  /* Image scaling */
-  #hero img {
-    max-width: 140%;
-    height: auto;
-    transform: scale(1.25);
-    transition: transform 0.3s ease;
-    margin-left: 5%;
-  }
-  
-  #hero img:hover {
-    transform: scale(1.27);
-  }
-  
-  /* Features list scaling */
-  #hero .space-y-3 {
-    margin-top: clamp(1rem, 2vw, 1.5rem);
-  }
-  
-  #hero .space-y-3 > div {
-    padding: clamp(0.75rem, 1.5vw, 1rem);
-    font-size: clamp(0.875rem, 1.2vw, 1.125rem);
-  }
 }

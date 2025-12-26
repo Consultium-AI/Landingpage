@@ -36,7 +36,7 @@ export default function SpotlightSoep() {
           viewport={{ once: true }}
         >
           <video
-            src={`${import.meta.env.BASE_URL}videos/soep-demo.mp4`}
+            src={`${import.meta.env.BASE_URL}videos/SOEP_DEMO.m4v`}
             autoPlay
             muted
             loop

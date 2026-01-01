@@ -138,7 +138,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">Pilot programma</h3>
-                    <p className="text-gray-600 text-sm mb-4">Pilot loopt t/m maart 2026</p>
+                    <p className="text-gray-600 text-sm mb-4">Oktober 2025 t/m maart 2026</p>
                     <p className="text-gray-700 leading-relaxed">
                       Als early adopter krijg je exclusieve toegang tot alle nieuwe features voordat ze officieel worden gelanceerd.
                     </p>

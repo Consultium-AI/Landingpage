@@ -161,7 +161,7 @@ export default function AboutSection() {
               {[
                 { year: "2024", title: "Concept", desc: "Ontstaan van het idee en eerste validatie met zorgprofessionals.", status: "completed", align: "right" },
                 { year: "2025", title: "Prototype & Beta", desc: "Ontwikkeling van de eerste werkende versie en uitgebreide tests in de praktijk.", status: "completed", align: "left" },
-                { year: "2026", title: "Pilot & Productie", desc: "Q1: Laatste pilot-fase met geselecteerde praktijken. Q2: Officiële productie-release.", status: "current", align: "right" }
+                { year: "2026", title: "Pilot & Productie", desc: "Q1: Laatste pilot-fase met geselecteerde praktijken.\nQ2: Officiële productie-release.", status: "current", align: "right" }
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -178,7 +178,12 @@ export default function AboutSection() {
                         {item.status === "completed" && <span className="px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-semibold">Voltooid</span>}
                       </div>
                       <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                      <p className="text-gray-600">{item.desc}</p>
+                      <p className="text-gray-600">{item.desc.split('\n').map((line, i, arr) => (
+                        <span key={i}>
+                          {line}
+                          {i < arr.length - 1 && <br />}
+                        </span>
+                      ))}</p>
                     </div>
                   </div>
                   <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center justify-center">

@@ -201,11 +201,11 @@ function CustomVideoPlayer({ videoRef, src, gradient, allowSound = false, onFull
               <motion.div
                 initial={{ scale: 0.8 }}
                 animate={{ scale: 1 }}
-                className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center shadow-xl"
-              >
-                <svg className="w-10 h-10 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
+            className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center shadow-xl"
+          >
+            <svg className="w-10 h-10 text-gray-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
               </motion.div>
             )}
           </motion.div>

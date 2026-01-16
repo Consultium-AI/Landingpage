@@ -248,7 +248,6 @@ export default function App() {
         <FeaturesSection />
         <ComingSoonSection />
         <AboutSection />
-        <DemoBookingSection />
         <ContactSection />
         <Footer />
 

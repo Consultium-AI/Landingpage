@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from '@emailjs/browser';
+import DemoBookingSection from './DemoBookingSection';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -95,15 +96,20 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative bg-slate-50 min-h-screen flex items-center overflow-hidden">
-      {/* Smooth transition from Plan section */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
-        <svg className="relative block w-full h-24" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M0,120 L1200,60 L1200,0 L0,0 Z" fill="#f1f5f9" />
-        </svg>
-      </div>
+    <>
+      {/* Demo Booking Section */}
+      <DemoBookingSection />
       
-      <div className="w-full max-w-[1800px] mx-auto px-6 lg:px-16 py-24 lg:py-32 relative z-10">
+      {/* Contact Section */}
+      <section id="contact" className="relative bg-slate-50 min-h-screen flex items-center overflow-hidden">
+        {/* Smooth transition */}
+        <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
+          <svg className="relative block w-full h-24" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,120 L1200,60 L1200,0 L0,0 Z" fill="#f1f5f9" />
+          </svg>
+        </div>
+        
+        <div className="w-full max-w-[1800px] mx-auto px-6 lg:px-16 py-24 lg:py-32 relative z-10">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -274,5 +280,6 @@ export default function ContactSection() {
         </motion.div>
       </div>
     </section>
+    </>
   );
 }

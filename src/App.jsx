@@ -6,7 +6,6 @@ import HeroSection from "./components/HeroSection";
 import FeaturesSection from "./components/FeaturesSection";
 import ComingSoonSection from "./components/ComingSoonSection";
 import AboutSection from "./components/AboutSection";
-import DemoBookingSection from "./components/DemoBookingSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import "./App.css";

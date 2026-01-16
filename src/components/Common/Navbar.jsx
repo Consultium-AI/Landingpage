@@ -37,7 +37,7 @@ export default function Navbar() {
             lastUpdate = now;
             
             // Simplified section detection - just check which section is in view
-            const sections = ['contact', 'demo', 'plan', 'privacy', 'about', 'features', 'hero'];
+            const sections = ['demo', 'plan', 'privacy', 'about', 'features', 'hero'];
             const viewportMiddle = currentScrollY + window.innerHeight * 0.4;
             
             for (const id of sections) {
@@ -77,8 +77,7 @@ export default function Navbar() {
     { href: '#about', label: 'Over Ons', id: 'about' },
     { href: '#privacy', label: 'Privacy', id: 'privacy' },
     { href: '#plan', label: 'Plan', id: 'plan' },
-    { href: '#demo', label: 'Demo', id: 'demo' },
-    { href: '#contact', label: 'Contact', id: 'contact' },
+    { href: '#demo', label: 'Contact', id: 'demo' },
   ];
 
   return (

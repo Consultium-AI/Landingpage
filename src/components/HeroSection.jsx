@@ -102,17 +102,12 @@ export default function HeroSection({ onShowVideoModal }) {
             
             <motion.button
               onClick={() => {
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
+                const demoSection = document.getElementById('demo');
+                if (demoSection) {
                   const offset = 100;
-                  const elementPosition = contactSection.getBoundingClientRect().top;
+                  const elementPosition = demoSection.getBoundingClientRect().top;
                   const offsetPosition = elementPosition + window.pageYOffset - offset;
                   window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                  setTimeout(() => {
-                    window.dispatchEvent(new CustomEvent('fillPilotMessage', {
-                      detail: { message: "Hallo, ik ben geïnteresseerd in deelname aan de gratis pilot van Consultium AI en zou graag meer informatie willen ontvangen over de mogelijkheden voor mijn praktijk." }
-                    }));
-                  }, 800);
                 }
               }}
               className="group px-8 py-4 2xl:px-9 2xl:py-5 bg-white/80 border-2 border-gray-200 text-gray-700 font-semibold rounded-2xl text-base 2xl:text-lg hover:border-blue-300 hover:bg-white transition-all duration-200"
@@ -120,7 +115,7 @@ export default function HeroSection({ onShowVideoModal }) {
               whileTap={{ scale: 0.98 }}
             >
               <span className="flex items-center gap-2 2xl:gap-3">
-                Contact Opnemen
+                Demo inplannen
                 <svg className="w-4 h-4 2xl:w-5 2xl:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -243,22 +238,17 @@ export default function HeroSection({ onShowVideoModal }) {
           
           <button
             onClick={() => {
-              const contactSection = document.getElementById('contact');
-              if (contactSection) {
+              const demoSection = document.getElementById('demo');
+              if (demoSection) {
                 const offset = 100;
-                const elementPosition = contactSection.getBoundingClientRect().top;
+                const elementPosition = demoSection.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - offset;
                 window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                setTimeout(() => {
-                  window.dispatchEvent(new CustomEvent('fillPilotMessage', {
-                    detail: { message: "Hallo, ik ben geïnteresseerd in deelname aan de gratis pilot van Consultium AI." }
-                  }));
-                }, 800);
               }
             }}
             className="px-6 py-4 bg-white/80 border-2 border-gray-200 text-gray-700 font-semibold rounded-2xl text-base active:scale-[0.98] transition-transform"
           >
-            Contact Opnemen
+            Demo inplannen
           </button>
         </motion.div>
 

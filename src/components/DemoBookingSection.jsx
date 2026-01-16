@@ -12,17 +12,16 @@ const stagger = {
   visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
 };
 
-// Generate time slots between 12:00 and 18:00
-const generateTimeSlots = () => {
+// Generate time slots between 12:00 and 18:00 (or 15:00-18:00 for Fridays)
+const generateTimeSlots = (isFriday = false) => {
   const slots = [];
-  for (let hour = 12; hour < 18; hour++) {
+  const startHour = isFriday ? 15 : 12;
+  for (let hour = startHour; hour < 18; hour++) {
     slots.push(`${hour.toString().padStart(2, '0')}:00`);
     slots.push(`${hour.toString().padStart(2, '0')}:30`);
   }
   return slots;
 };
-
-const TIME_SLOTS = generateTimeSlots();
 
 // Get days in month
 const getDaysInMonth = (year, month) => {
@@ -335,7 +334,8 @@ export default function DemoBookingSection() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-gray-900">Demo tijdslots: 12:00 - 18:00</p>
-                      <p className="text-sm text-gray-600">Maandag t/m vrijdag beschikbaar</p>
+                      <p className="text-sm text-gray-600">Maandag t/m donderdag: 12:00-18:00</p>
+                      <p className="text-sm text-gray-600">Vrijdag: 15:00-18:00</p>
                     </div>
                   </div>
                 </div>
@@ -448,21 +448,23 @@ export default function DemoBookingSection() {
                       {selectedDate && formatDate(selectedDate)}
                     </p>
                     
-                    <div className="grid grid-cols-3 gap-3">
-                      {TIME_SLOTS.map((time) => (
-                        <button
-                          key={time}
-                          onClick={() => handleTimeSelect(time)}
-                          className={`py-3 px-4 rounded-xl font-medium transition-all duration-200 ${
-                            selectedTime === time
-                              ? 'bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg'
-                              : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
-                          }`}
-                        >
-                          {time}
-                        </button>
-                      ))}
-                    </div>
+                    {selectedDate && (
+                      <div className="grid grid-cols-3 gap-3">
+                        {generateTimeSlots(selectedDate.getDay() === 5).map((time) => (
+                          <button
+                            key={time}
+                            onClick={() => handleTimeSelect(time)}
+                            className={`py-3 px-4 rounded-xl font-medium transition-all duration-200 ${
+                              selectedTime === time
+                                ? 'bg-gradient-to-br from-blue-600 to-cyan-500 text-white shadow-lg'
+                                : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                            }`}
+                          >
+                            {time}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </motion.div>
                 )}
 

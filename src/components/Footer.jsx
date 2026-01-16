@@ -80,7 +80,7 @@ export default function Footer() {
           {/* Bottom Footer */}
           <div className="border-t border-white/10 pt-6">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="text-gray-500 text-xs">© {currentYear} Consultium B.V. Alle rechten voorbehouden.</div>
+              <div className="text-gray-500 text-xs">© {currentYear} Consultium. Alle rechten voorbehouden.</div>
               <div className="flex items-center gap-4 text-xs">
                 <a href={`${import.meta.env.BASE_URL}files/Algemene_voorwaarden_consultium.pdf`} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors">Algemene voorwaarden</a>
                 <span className="text-gray-600">|</span>

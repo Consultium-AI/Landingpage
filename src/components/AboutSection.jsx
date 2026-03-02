@@ -161,7 +161,7 @@ export default function AboutSection() {
               {[
                 { year: "2024", title: "Concept", desc: "Ontstaan van het idee en eerste validatie met zorgprofessionals.", status: "completed", align: "right" },
                 { year: "2025", title: "Prototype & Beta", desc: "Ontwikkeling van de eerste werkende versie en uitgebreide tests in de praktijk.", status: "completed", align: "left" },
-                { year: "2026", title: "Pilot & Productie", desc: "Q1: Laatste pilot-fase met geselecteerde praktijken.\nQ2: Officiële productie-release.", status: "current", align: "right" }
+                { year: "2026", title: "Pilot & Productie", desc: "Laatste pilot-fase met geselecteerde praktijken.", status: "current", align: "right" }
               ].map((item, index) => (
                 <motion.div
                   key={index}

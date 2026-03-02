@@ -144,7 +144,6 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">Pilot programma</h3>
-                    <p className="text-gray-600 text-sm mb-4">Oktober 2025 t/m maart 2026</p>
                     <p className="text-gray-700 leading-relaxed">
                       Als early adopter krijg je exclusieve toegang tot alle nieuwe features voordat ze officieel worden gelanceerd.
                     </p>
@@ -152,7 +151,7 @@ export default function ContactSection() {
                 </div>
 
                 <div className="space-y-3 pt-4 border-t border-gray-100">
-                  {["Gratis toegang tijdens de hele pilot fase", "Inspraak op nieuwe features", "Directe ondersteuning bij vragen", "Exclusieve korting op de officiële release"].map((benefit, index) => (
+                  {["Gratis toegang tijdens de hele pilot fase", "Inspraak op nieuwe features", "Directe ondersteuning bij vragen"].map((benefit, index) => (
                     <div key={index} className="flex items-center gap-3">
                       <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20">

@@ -212,7 +212,10 @@ export default function App() {
     const scrollToHash = () => {
       const el = document.getElementById(hash);
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const navbarOffset = 100;
+        const halfPage = window.innerHeight / 2;
+        const top = el.getBoundingClientRect().top + window.scrollY - navbarOffset - halfPage;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
         return true;
       }
       return false;

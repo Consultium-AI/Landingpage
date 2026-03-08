@@ -214,7 +214,7 @@ export default function App() {
       if (el) {
         const navbarOffset = 100;
         const halfPage = window.innerHeight / 2;
-        const top = el.getBoundingClientRect().top + window.scrollY - navbarOffset - halfPage;
+        const top = el.getBoundingClientRect().top + window.scrollY - navbarOffset + halfPage;
         window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
         return true;
       }

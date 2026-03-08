@@ -207,14 +207,25 @@ export default function App() {
   // Scroll to hash on load (e.g. consultiumai.com/#plan-een-demo)
   useEffect(() => {
     const hash = window.location.hash?.slice(1);
-    if (hash) {
+    if (!hash) return;
+
+    const scrollToHash = () => {
       const el = document.getElementById(hash);
       if (el) {
-        const offset = 100;
-        const top = el.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'instant' });
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return true;
       }
-    }
+      return false;
+    };
+
+    // Retry: DOM may not be ready on first paint (SPA load)
+    const attempt = (retries = 0) => {
+      if (scrollToHash()) return;
+      if (retries < 5) {
+        setTimeout(() => attempt(retries + 1), 150 * (retries + 1));
+      }
+    };
+    requestAnimationFrame(() => attempt(0));
   }, []);
 
   // Close modal on Escape key & prevent scroll when open

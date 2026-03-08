@@ -204,6 +204,19 @@ export default function App() {
     document.title = "Consultium AI";
   }, []);
 
+  // Scroll to hash on load (e.g. consultiumai.com/#plan-een-demo)
+  useEffect(() => {
+    const hash = window.location.hash?.slice(1);
+    if (hash) {
+      const el = document.getElementById(hash);
+      if (el) {
+        const offset = 100;
+        const top = el.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'instant' });
+      }
+    }
+  }, []);
+
   // Close modal on Escape key & prevent scroll when open
   useEffect(() => {
     const handleEscape = (e) => {

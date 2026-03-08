@@ -234,6 +234,7 @@ export default function DemoBookingSection() {
 
   return (
     <section id="demo" className="relative py-24 lg:py-32 overflow-hidden">
+      <span id="plan-een-demo" className="absolute top-0 left-0 block w-px h-px" aria-hidden="true" tabIndex={-1} />
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-blue-50/30 to-white" />
       

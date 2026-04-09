@@ -8,6 +8,31 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollYRef = useRef(0);
 
+  // Prevent body scroll when mobile menu is open.
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu when switching to desktop layout.
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Optimized scroll handler with throttling
   useEffect(() => {
     let ticking = false;
@@ -89,13 +114,13 @@ export default function Navbar() {
       animate={{ y: isVisible ? 0 : -100, opacity: isVisible ? 1 : 0 }}
       transition={{ duration: 0.25 }}
     >
-      <div className="w-full flex items-center justify-between h-20 px-5 lg:px-8 xl:px-12 2xl:px-16">
+      <div className="w-full flex items-center justify-between h-16 sm:h-20 px-4 sm:px-5 lg:px-8 xl:px-12 2xl:px-16">
         {/* Logo */}
-        <a href="#hero" className="flex items-center -my-8">
+        <a href="#hero" className="flex items-center -my-5 sm:-my-8">
           <img
             src={`${import.meta.env.BASE_URL}images/logo.png`}
             alt="Consultium AI"
-            className="h-28 w-auto"
+            className="h-20 sm:h-28 w-auto"
           />
         </a>
 
@@ -145,6 +170,9 @@ export default function Navbar() {
         <button
           className="lg:hidden p-2.5 rounded-xl text-gray-700 hover:text-gray-900 hover:bg-gray-100/80 focus:outline-none transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? "Sluit menu" : "Open menu"}
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-menu"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -156,43 +184,56 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            className="lg:hidden absolute top-full left-0 right-0 bg-white/98 backdrop-blur-sm border-t border-gray-100 shadow-xl"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <div className="px-5 py-6 space-y-2">
-              {navLinks.map((link) => (
+          <>
+            <motion.button
+              type="button"
+              className="lg:hidden fixed inset-0 top-16 sm:top-20 bg-black/30"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              aria-label="Sluit menu overlay"
+            />
+            <motion.div
+              id="mobile-menu"
+              className="lg:hidden fixed left-0 right-0 top-16 sm:top-20 bottom-0 bg-white border-t border-gray-100 shadow-2xl overflow-y-auto"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="px-4 sm:px-5 py-6 space-y-2 pb-8">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.id}
+                    href={link.href}
+                    onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); scrollToSection(link.id); }}
+                    className={`block px-4 py-3 rounded-xl font-medium transition-colors duration-200 ${
+                      activeSection === link.id ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+
                 <a
-                  key={link.id}
-                  href={link.href}
-                  onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); scrollToSection(link.id); }}
-                  className={`block px-4 py-3 rounded-xl font-medium transition-colors duration-200 ${
-                    activeSection === link.id ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
-                  }`}
+                  href="https://app.consultiumai.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="w-full mt-4 px-6 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl text-center shadow-lg shadow-blue-500/25 block"
                 >
-                  {link.label}
+                  <span className="flex items-center justify-center gap-2">
+                    Naar de app
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </span>
                 </a>
-              ))}
-              
-              <a
-                href="https://app.consultiumai.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full mt-4 px-6 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl text-center shadow-lg shadow-blue-500/25 block"
-              >
-                <span className="flex items-center justify-center gap-2">
-                  Naar de app
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </span>
-              </a>
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.nav>

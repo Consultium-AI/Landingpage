@@ -68,7 +68,7 @@ export default function Footer() {
             <div>
               <h4 className="font-semibold mb-4 text-white text-sm uppercase tracking-wider">Contact</h4>
               <ul className="space-y-3 text-gray-400 text-sm">
-                <li><a href="tel:+31850805541" className="hover:text-white transition-colors">+31 85 080 5541</a></li>
+                <li><a href="tel:01036031123" className="hover:text-white transition-colors">010 360 31123</a></li>
                 <li><a href="mailto:info@consultiumai.com" className="hover:text-white transition-colors">info@consultiumai.com</a></li>
                 <li className="pt-1"><span className="text-gray-500">Westerstraat 10<br />3016DH Rotterdam<br />Nederland</span></li>
                 <li className="pt-1"><span className="text-gray-500">KVK: 96716606</span></li>

@@ -101,6 +101,7 @@ export default function ContactSection() {
       <DemoBookingSection />
       
       {/* Contact Section */}
+      <span id="pilot" className="block -mt-24 pt-24" aria-hidden="true"></span>
       <section id="contact" className="relative bg-slate-50 min-h-screen flex items-center overflow-hidden">
         {/* Smooth transition */}
         <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
